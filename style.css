@@ -1,0 +1,259 @@
+/* Reset default browser styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f3e6d8;
+  padding-bottom: 70px; /* Space for bottom nav */
+}
+
+/* Header Design */
+header {
+  background-color: #b3a78c;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+}
+
+header h1 {
+  font-size: 24px;
+}
+
+.header-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-icons input {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+}
+
+.header-icons button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Section Design */
+.section {
+  padding: 20px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.section-header h2 {
+  font-size: 20px;
+  color: #333;
+}
+
+.section-header button {
+  background-color: #b3a78c;
+  border: none;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Book list/grid */
+.book-list, .book-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+}
+
+.book-list img, .book-grid div img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s;
+}
+
+.book-grid div {
+  text-align: center;
+}
+
+.book-grid div p {
+  margin-top: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  color: #444;
+}
+
+/* Hover effect on books */
+.book-list img:hover, .book-grid div img:hover {
+  transform: scale(1.05);
+}
+
+/* Book Details Page */
+.book-details {
+  text-align: center;
+}
+
+.book-details img {
+  width: 60%;
+  max-width: 300px;
+  height: auto;
+  margin-bottom: 20px;
+  border-radius: 50px;
+}
+
+.book-details h2 {
+  font-size: 24px;
+  margin: 10px 0;
+  color: #333;
+}
+
+.book-details p {
+  margin: 8px 0;
+  font-size: 16px;
+  color: #555;
+}
+
+/* Buttons for Download and Read */
+.buttons {
+  margin-top: 20px;
+}
+
+.btn {
+  display: inline-block;
+  background-color: #b3a78c;
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  margin: 10px 5px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #998e77;
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #e5dac2; /* BookNest এর main soft creamy color */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0;
+  border-top: 1px solid #d5bf8f;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.bottom-nav button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  color: #5c4400; /* matching brown */
+  cursor: pointer;
+  transition: transform 0.2s, color 0.3s;
+}
+
+.bottom-nav button:hover {
+  color: #241a02;
+  transform: scale(1.1);
+}
+
+/* Responsive Small Devices */
+@media (max-width: 600px) {
+  .book-details img {
+    width: 80%;
+  }
+  .header-icons input {
+    width: 100px;
+  }
+}
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  padding: 20px;
+}
+
+.book-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+  text-align: center;
+  padding: 10px;
+}
+
+.book-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.book-card h3 {
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.book-card p {
+  font-size: 14px;
+  color: gray;
+}
+
+.upload-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 250px;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+}
+
+.btn-group {
+  margin-top: 10px;
+}
+
+.btn {
+  display: inline-block;
+  margin: 5px 2px;
+  padding: 5px 10px;
+  background: #4CAF50;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #eee;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  box-shadow: 0px -2px 5px rgba(0,0,0,0.1);
+}
+  
