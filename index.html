@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>BookNest - Home</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<header>
+  <h1>BookNest</h1>
+  <div class="header-icons">
+    <form action="search.php" method="GET" class="search-form">
+      <input type="text" name="q" placeholder="Search books by name..." required />
+      <button type="submit">🔍</button>
+    </form>
+    <button onclick="location.href='shelf.php'">🛒</button>
+    <button onclick="location.href='profile.php'">👤</button>
+  </div>
+</header>
+
+<section class="section">
+  <div class="section-header">
+    <h2>Recommended Ebooks</h2>
+    <button onclick="goToMore()">MORE</button>
+  </div>
+ <div class="book-grid" id="recommended-books" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; padding: 20px; justify-items: center;">
+    <!-- Recommended books will be dynamically loaded here -->
+  </div>
+</section>
+
+<nav class="bottom-nav">
+  <button onclick="location.href='index.html'">🏠 Home</button>
+  <button onclick="location.href='shelf.php'">🛒 Shelf</button>
+  <button onclick="location.href='trending.php'">🔥 Trending</button>
+</nav>
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    loadRecommendedBooks();
+  });
+
+  function loadRecommendedBooks() {
+    fetch('get_recommended_books.php')
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById('recommended-books');
+        container.innerHTML = '';
+
+      data.forEach(book => {
+      const bookCard = document.createElement('div');
+      bookCard.className = 'book-card';
+      bookCard.style = `
+        background: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        padding: 10px;
+        width: 180px;
+        text-align: center;
+        font-family: 'Segoe UI', sans-serif;
+        color: #5c4400;
+      `;
+
+      const coverImg = document.createElement('img');
+      coverImg.src = book.cover_url;
+      coverImg.alt = book.title;
+      coverImg.style = `
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 8px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        cursor: pointer;
+      `;
+      coverImg.addEventListener('click', () => {
+        goToDetails(book.id);
+      });
+
+      const title = document.createElement('strong');
+      title.textContent = book.title;
+      title.style = 'display: block; font-size: 16px; margin: 5px 0;';
+
+      const author = document.createElement('div');
+      author.textContent = `By ${book.author}`;
+      author.style = 'font-size: 14px; color: #6e5a3a;';
+
+      const genre = document.createElement('em');
+      genre.textContent = book.genre;
+      genre.style = 'font-size: 13px; font-style: italic; color: #998e77;';
+
+      bookCard.appendChild(coverImg);
+      bookCard.appendChild(title);
+      container.appendChild(bookCard);
+    });
+
+      })
+      .catch(error => {
+        console.error('Error loading recommended books:', error);
+      });
+  }
+
+  function goToDetails(bookId) {
+    window.location.href = `bookdetails.php?id=${encodeURIComponent(bookId)}`;
+  }
+
+  function goToMore() {
+    window.location.href = 'novels.php';
+  }
+</script>
+
+</body>
+</html>
+
